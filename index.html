@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MatchMakerProject</title>
+    </head>
+<body>
+    <h1 style=color:red;'>Match Maker</h1>
+    <p>Welcome to MatchMaker! You will select one option from each drop down menu to determine how compatable we are for each other.</p>
+<label>Apple is better than Andorid</label>
+<select id="q1">
+<option value="5">Strongly Agree</option>
+<option value="4">Agree</option>
+<option value="3">Neutral</option>
+<option value="2">Disgree</option>
+<option value="1">Strongly Disgree</option>
+</select>
+<br>
+<br>
+<label>I like to go for long walks</label>
+<select id="q2">
+<option value="5">Strongly Agree</option>
+<option value="4">Agree</option>
+<option value="3">Neutral</option>
+<option value="2">Disgree</option>
+<option value="1">Strongly Disgree</option>
+</select>
+<br>
+<br>
+<label>Tesla is one of the greatest cars out in the market today</label>
+<select id="q3">
+<option value="5">Strongly Agree</option>
+<option value="4">Agree</option>
+<option value="3">Neutral</option>
+<option value="2">Disgree</option>
+<option value="1">Strongly Disgree</option>
+</select>
+
+<br>
+<br>
+<label>Playstation is better than Xbox</label>
+<select id="q4">
+<option value="5">Strongly Agree</option>
+<option value="4">Agree</option>
+<option value="3">Neutral</option>
+<option value="2">Disgree</option>
+<option value="1">Strongly Disgree</option>
+</select>
+<br>
+<br>
+<label>I enjoy learning about computers</label>
+<select id="q5">
+<option value="5">Strongly Agree</option>
+<option value="4">Agree</option>
+<option value="3">Neutral</option>
+<option value="2">Disgree</option>
+<option value="1">Strongly Disgree</option>
+</select>
+<br>
+<br>
+<button onclick="calculateCompatibility()">Calculate Compatiblity</button>
+<p id = "compatibility"> </p>
+
+
+<script>
+console.log("Starting MatchMaker.........");
+function calculateCompatibility() {
+    console.log("calculateCompatibility()");
+    const DESIRED_RESPONSE = [
+        5, /* strongly agree */
+        5, /* strongly agree */
+        3, /* neutral */
+        4, /* agree */
+        5, /* Strongly Agree */ 
+    ]
+    const MAX_SCORE = 25;
+    let question1response = document.getElementById("q1").selectedOptions[0].value;
+    let question2response = document.getElementById("q2").selectedOptions[0].value;
+    let question3response = document.getElementById("q3").selectedOptions[0].value;
+    let question4response = document.getElementById("q4").selectedOptions[0].value;
+    let question5response = document.getElementById("q5").selectedOptions[0].value;
+    console.log("Question 1 Answers:")
+    console.log(document.getElementById("q1").selectedOptions[0].text);
+    console.log(document.getElementById("q1").selectedOptions[0].value);
+    console.log(question1response);
+
+    console.log("Question 2 Answers:")
+    console.log(document.getElementById("q2").selectedOptions[0].text);
+    console.log(document.getElementById("q2").selectedOptions[0].value);
+    console.log(question2response);
+
+    console.log("Question 3 Answers:")
+    console.log(document.getElementById("q3").selectedOptions[0].text);
+    console.log(document.getElementById("q3").selectedOptions[0].value);
+    console.log(question3response);
+
+    console.log("Question 4 Answers:")
+    console.log(document.getElementById("q4").selectedOptions[0].text);
+    console.log(document.getElementById("q4").selectedOptions[0].value);
+    console.log(question4response);
+
+    console.log("Question 5 Answers:")
+    console.log(document.getElementById("q5").selectedOptions[0].text);
+    console.log(document.getElementById("q5").selectedOptions[0].value);
+    console.log(question5response);
+
+
+
+
+    
+    let question1compatibility = 5 - Math.abs(question1response - DESIRED_RESPONSE[0]);
+    let question2compatibility = 5 - Math.abs(question2response - DESIRED_RESPONSE[1]);
+    let question3compatibility = 5 - Math.abs(question3response - DESIRED_RESPONSE[2]);
+    let question4compatibility = 5 - Math.abs(question4response - DESIRED_RESPONSE[3]);
+    let question5compatibility = 5 - Math.abs(question5response - DESIRED_RESPONSE[4]);
+
+    console.log("c1=" + question1compatibility);
+    console.log("c2=" + question2compatibility);
+    console.log("c3=" + question3compatibility);
+    console.log("c4=" + question4compatibility);
+    console.log("c5=" + question5compatibility);
+
+    let totalcomaptibility = question1compatibility + question2compatibility + question3compatibility + question4compatibility + question5compatibility;
+    totalcomaptibility *= 100 / MAX_SCORE
+    totalcomaptibility = Math.round(totalcomaptibility)
+    console.log("tc=" + totalcomaptibility);
+
+
+
+
+
+    document.getElementById("compatibility").innerHTML = "Your Compatibility is: " + totalcomaptibility ;
+}
+
+</script>
+</body>
+</html>
